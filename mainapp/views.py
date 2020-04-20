@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.http import Http404
-from .models import BlogPost
+from .models import BlogPost, Tag
 from datetime import datetime
 
 ALL_POSTS = [
@@ -35,3 +35,9 @@ def post(request, id):
     #    raise Http404("Post does not exist")
     post = get_object_or_404(BlogPost, pk=id)
     return render(request, 'mainapp/post.html', {'object': post})
+
+def tag_posts(request, name):
+   name = name.lower()
+   title = "Posts about {}".format(name)
+   title = get_object_or_404(Tag, name=name)
+   return render(request, 'mainapp/filtered_post_list.html', {'title': title})
