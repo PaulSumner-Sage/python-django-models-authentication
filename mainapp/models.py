@@ -11,7 +11,7 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return reverse('post', args=[str(self.id)])
 
@@ -25,4 +25,4 @@ class Tag(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        reverse('tag_posts', args=[str(self.name)])
+        return reverse('tag_posts', args=[str(self.name)])
